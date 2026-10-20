@@ -24,3 +24,8 @@ a.href='mailto:skytools.com@gmail.com?subject='+encodeURIComponent(subject)+'&bo
 }finally{clearTimeout(timer);button.disabled=false}
 });
 })();
+// Selecciona Derecho Aeronautico desde CTA en el formulario existente.
+document.querySelectorAll('[data-servicio]').forEach(link=>link.addEventListener('click',()=>{
+const service=link.getAttribute('data-servicio');const field=document.querySelector('#portal-lead-form select[name="tema"]');
+if(field && Array.from(field.options).some(option=>option.value===service))field.value=service;
+}));
