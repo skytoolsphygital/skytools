@@ -1,88 +1,37 @@
-# SKYTOOLS | Phygital Engineering
+# SKYTOOLS Main Web V03.4 — Namecheap
 
-> Engineering the Physical. Connecting the Digital.  
-> Ingeniería que transforma el mundo físico en inteligencia digital.
+Versión basada en la previsualización aprobada el 20/oct/2026.
 
-## Visión
+## Correcciones
+- Logotipo oficial original compartido por SKYTOOLS (archivo transparente con margen de seguridad), en encabezado y pie.
+- Galería de proyectos: imágenes individuales sin capturas de cards ni bandas negras, y visualización en proporción natural.
+- Sustitución del cubo por imagen temática de ingeniería phygital, RPAS, GIS e infraestructura.
+- Logos DEC y sello BIC desde archivos originales suministrados, con leyendas BIC.
+- Se conservan favicon, sitemap.xml, robots.txt, enlaces a las landing y flujo `lead-v2` de Industrial.
 
-Web matriz institucional y comercial de SKYTOOLS SAS BIC. Conecta el portafolio multidisciplinario con landing pages de conversión, casos de éxito y un sistema coherente de captación y medición.
+## Subida segura
+1. Confirmar **Document Root** de `skytools.org` en cPanel > Domains.
+2. Hacer copia de seguridad antes de sustituir la web actual.
+3. Para previsualizar, subir el contenido del ZIP a una subcarpeta dentro del Document Root, por ejemplo `skytools-preview/`.
+4. Una vez aprobado, subir el contenido de `SKYTOOLS-MAIN-WEB-v03.3/` directamente al Document Root confirmado, no la carpeta contenedora.
+5. Verificar raíz y www con HTTPS, navegación móvil, `sitemap.xml`, formulario y correo.
 
-## Unidades de servicio
+## Notas
+- El formulario usa la Edge Function `lead-v2` y clave pública `anon` de INDUSTRIAL. Los mensajes desde el dominio principal se etiquetan `MAIN WEB | ...` en el tipo de proyecto. El backend actual los clasifica internamente como `source_site = industrial` y notifica por el mismo flujo. Prueba real pendiente.
+- El endpoint restringe los orígenes: `localhost` y sitios de preview en otro dominio no envían. Una subcarpeta bajo `https://skytools.org` sí comparte origen.
+- Los paneles gráficos derivados de la previsualización se mantienen como recursos conceptuales hasta reemplazarlos por fotografías verificadas con sus licencias correspondientes.
+- URL de 3D LAB `https://3d.skytools.org/`: confirmar que ya está publicada antes del lanzamiento.
+- No se cambió Supabase ni Namecheap directamente.
 
-1. **RPAS Industrial** — inspección, fotogrametría, levantamientos, digitalización e ingeniería aérea.
-2. **FPV RAW** — producción audiovisual aérea inmersiva.
-3. **3D LAB** — diseño industrial, impresión 3D, prototipado y piezas de precisión.
-4. **Digital Engineering** — modelos 3D, XR/VR/AR, gemelos digitales, entrenamientos y simulación.
-5. **RegTech** — ordenamiento territorial, consultoría regulatoria RPAS y derecho aeronáutico.
-6. **Intelligence & Control** — monitoreo, GIS, SCADA e integración de sistemas.
+## Nueva vertical — Derecho Aeronáutico y regulación RPAS
+- Tarjeta 7 destacada a ancho completo en Capacidades.
+- Nueva sección `#derecho-aeronautico` con 6 líneas de servicio y fotografía conceptual adaptada de la previsualización aprobada.
+- Enlace en el menú y el pie; CTA que preselecciona `Derecho aeronáutico / RPAS` en el formulario.
+- Misma Edge Function pública `lead-v2`; el backend clasifica solicitudes de skytools.org como `industrial` internamente. El campo `project_type` incluye `MAIN WEB | Derecho aeronáutico / RPAS`, lo cual permite distinguirlas en la bandeja actual.
+- No se añadió un dominio `legal.skytools.org` ni se modificó el backend. La prestación de asesoría específica deberá contar con profesionales habilitados y diagnóstico del caso.
 
-> La arquitectura de unidades es una propuesta de posicionamiento, no una afirmación de divisiones jurídicas independientes.
+## Alcance de verificación
+- CSS, HTML, JS y archivos locales verificados estáticamente.
+- Revisar diseño desktop y móvil después de desplegar; hacer envío controlado del formulario desde `https://skytools.org` antes de activar campañas. Si se usa un dominio de vista previa no autorizado, CORS bloqueará la llamada a `lead-v2`.
 
-## Navegación propuesta
-
-- Inicio
-- Soluciones
-  - RPAS Industrial
-  - FPV RAW
-  - 3D LAB
-  - Digital Engineering
-  - RegTech
-  - Intelligence & Control
-- Proyectos / Casos de éxito
-- Nuestra empresa
-- Conocimiento / Insights
-- Contacto / Cotizar proyecto
-
-## Objetivos
-
-- Explicar con claridad el valor diferencial phygital.
-- Derivar tráfico de intención alta a landing pages especializadas.
-- Respaldar credibilidad con evidencia: fotografías reales, proyectos y metodología.
-- Capturar leads medibles sin duplicaciones, con consentimiento válido.
-
-## Estructura técnica prevista
-
-Sitio estático optimizado para despliegue en hosting Namecheap; HTML/CSS/JS, accesibilidad, responsive y SEO técnico. Arquitectura, framework y despliegue final se decidirán tras validar el alojamiento y el diseño.
-
-Integraciones a validar y reaprovechar cuando corresponda:
-- GTM + GA4 y eventos de conversión.
-- Formularios y procesamiento seguro en Supabase.
-- WhatsApp Business.
-- Google Ads y Meta.
-- HTTPS de skytools.org y www.skytools.org (requisito previo de lanzamiento).
-
-No almacenar secretos ni claves privadas en este repositorio. Verificar controles anti-spam, atribución y consentimiento de analítica antes de publicar.
-
-## Fases
-
-### Fase 0 — Estrategia y contenido
-- [x] Definir concepto, segmentos y mapa inicial de navegación.
-- [ ] Inventariar el contenido de las landing existentes.
-- [ ] Seleccionar fotografías y proyectos verificables.
-- [ ] Confirmar arquitectura DNS/hosting y rutas.
-
-### Fase 1 — Diseño MVP
-- [ ] Sistema visual, wireframes desktop/mobile y componentes.
-- [ ] Home con seis unidades de capacidad.
-- [ ] Sobre SKYTOOLS, proyectos y contacto.
-- [ ] Enlaces verificados a unidades especializadas.
-
-### Fase 2 — Conversión y medición
-- [ ] Reutilizar y validar flujo de leads.
-- [ ] Eventos GA4/GTM y parámetros UTM.
-- [ ] Política de privacidad y configuración de consentimiento.
-- [ ] SEO, rendimiento y accesibilidad.
-
-### Fase 3 — Publicación y crecimiento
-- [ ] Validar certificados HTTPS (raíz y www).
-- [ ] QA multi-dispositivo y formularios end-to-end.
-- [ ] Sitemap, indexación y Search Console.
-- [ ] Lanzamiento por canales y revisión de conversiones.
-
-## Fuente institucional
-
-Portafolio «SKYTOOLS SAS BIC - Phygital Laws 2026» facilitado para el proyecto (12 páginas). El material histórico y las referencias comerciales deben verificarse antes de publicarse como testimonios o autorizaciones de uso de marca.
-
-## Estado
-
-Inicio de estrategia y conceptualización — 2026-10-19.
+V03.6: retirada la nota interna del formulario de contacto en la interfaz.
