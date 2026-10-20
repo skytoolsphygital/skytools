@@ -59,3 +59,15 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}body{background:radial-gradi
 .portal-legal{background:linear-gradient(100deg,#061725e8,#082334dc),url('https://industrial.skytools.org/assets/img/hero-industria.webp') center/cover no-repeat;border-top:1px solid #1a6745;border-bottom:1px solid #1a6745}
 .portal-legal-layout{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:6%}.portal-legal-summary p:not(.portal-section-no){font-size:1.1rem;line-height:1.7;color:#dce9ef}.portal-legal-summary h2 span{color:#1af66c}.portal-legal-note{font-size:.72rem!important}.portal-legal-services{display:grid;grid-template-columns:1fr 1fr;border:1px solid #397060;border-radius:16px;background:#061c29ee;overflow:hidden}.portal-legal-services article{padding:20px;border:1px solid #ffffff12}.portal-legal-services strong{color:#f2f9fb}.portal-legal-services p{color:#c5d6df;font-size:.85rem;line-height:1.5;margin:8px 0 0}
 @media(max-width:860px){.portal-legal-layout{grid-template-columns:1fr}.portal-legal-card>a{padding:18px;gap:14px}.portal-legal-symbol{font-size:2.6rem}}@media(max-width:520px){.portal-legal-services{grid-template-columns:1fr}.portal-legal-card h3{font-size:1.4rem}}
+
+/* V03.5 Derecho Aeronautico — cyan/aviation-blue identity */
+:root{--aviation-cyan:#29c7ff;--aviation-cyan-soft:#87e4ff}
+.portal-legal-card{border-color:rgba(41,199,255,.75);background:linear-gradient(106deg,#071f36,#0a3150 58%,#0b4370)}
+.portal-legal-card .portal-legal-symbol,.portal-legal-card h3 span,.portal-legal-arrow,.portal-legal-card small{color:var(--aviation-cyan)}
+.portal-legal-card .portal-legal-symbol{border-color:rgba(41,199,255,.45)}
+.portal-legal-arrow{border-color:var(--aviation-cyan)}
+.portal-legal{background:linear-gradient(108deg,#05192de8,#082743dd 48%,#0b3a66dd),url('https://industrial.skytools.org/assets/img/hero-industria.webp') center/cover no-repeat;border-color:rgba(41,199,255,.36)}
+.portal-legal-summary .portal-section-no,.portal-legal-summary h2 span{color:var(--aviation-cyan)}
+.portal-legal-services{border-color:rgba(41,199,255,.36);background:linear-gradient(180deg,#061f34ed,#07253ded)}
+.portal-legal-services strong{color:#f2fbff}
+.portal-legal-summary .portal-button.solid{background:linear-gradient(180deg,#7be4ff,#2fbfff);color:#062033}
