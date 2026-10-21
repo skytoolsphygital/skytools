@@ -47,3 +47,5 @@ d.text((73, 570), 'skytools.org', font=ImageFont.truetype(font_medium, 20),
 card.convert('RGB').quantize(colors=16, method=Image.Quantize.FASTOCTREE,
                               dither=Image.Dither.NONE).save(OUTPUT, optimize=True)
 print(f'{OUTPUT} ({OUTPUT.stat().st_size} bytes)')
+
+# Build asset: assets/img/og-skytools-main.png
