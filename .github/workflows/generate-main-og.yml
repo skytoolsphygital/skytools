@@ -1,0 +1,48 @@
+name: Generar portada social SKYTOOLS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/generate_og_skytools.py'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-og:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dependencias
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu-core
+          python -m pip install Pillow==11.3.0
+      - name: Crear imagen OG
+        run: python tools/generate_og_skytools.py
+      - name: Validar dimensiones
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          im=Image.open('assets/img/og-skytools-main.png')
+          assert im.size==(1200,630), im.size
+          print('Imagen OG validada')
+          PY
+      - name: Publicar archivo de portada
+        run: |
+          git add assets/img/og-skytools-main.png
+          if git diff --cached --quiet; then
+            echo "No hay cambios"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "assets: incorporar portada Open Graph institucional"
+          git push
