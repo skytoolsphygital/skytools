@@ -175,3 +175,17 @@ html{scroll-padding-top:110px}
 
 /* Footer BIC simplified - final approval */
 .bic-block{display:flex;align-items:center;justify-content:flex-start}.bic-logo-full{width:auto !important;height:150px;max-width:min(100%,330px);max-height:150px;object-fit:contain}.bic-copy,.bic-top,.bic-bottom{display:none !important}@media (max-width:720px){.bic-logo-full{height:128px;max-width:min(100%,280px);max-height:128px}}
+
+
+/* SKYTOOLS GLOBAL | ES / EN switcher - preview */
+.ecosystem-dropdown{background:#071c2a !important;backdrop-filter:none !important}
+.ecosystem-controls{display:flex;align-items:center;gap:10px;min-width:0}
+.language-switcher{display:flex;align-items:center;gap:2px;flex:0 0 auto;border:1px solid rgba(85,155,157,.5);border-radius:12px;padding:3px;background:rgba(5,22,33,.72);font-family:inherit}
+.language-switcher a{min-width:35px;min-height:33px;padding:7px 7px;border-radius:8px;color:#d7e9ef;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:.75rem;font-weight:850;line-height:1;transition:background .2s ease}
+.language-switcher a:hover{background:rgba(31,244,112,.15)}
+.language-switcher a:focus-visible{outline:2px solid #87e4ff;outline-offset:3px}
+.language-switcher a.lang-current{background:#21ec77;color:#072219}
+.ecosystem-language-note{font-size:.72rem;color:#a4c4d0;line-height:1.35;margin:0 16px 8px}
+@media(max-width:620px){.ecosystem-controls{gap:5px}.language-switcher a{min-width:31px;min-height:30px;padding:6px 5px}.ecosystem-switcher-trigger{font-size:.65rem}}
+@media(max-width:420px){.ecosystem-context .ecosystem-eyebrow,.ecosystem-context .ecosystem-separator,.ecosystem-context strong{display:none}.ecosystem-context:after{content:'SKYTOOLS';font-weight:850;letter-spacing:.06em;font-size:.61rem;color:#c8e0e7}.ecosystem-switcher{max-width:145px}.ecosystem-switcher-trigger{max-width:145px}}
+@media(max-width:350px){.ecosystem-context{display:none}.ecosystem-bar-inner{justify-content:flex-end}.ecosystem-controls{flex:1;justify-content:space-between}.ecosystem-switcher{max-width:170px}.ecosystem-switcher-trigger{max-width:170px}}

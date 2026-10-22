@@ -1,0 +1,83 @@
+name: SKYTOOLS GLOBAL — importar RC1 bilingüe (solo rama preview)
+
+on:
+  push:
+    branches:
+      - preview/skytools-global-es-en-rc1
+    paths:
+      - SKYTOOLS-GLOBAL-MAIN-ES-EN-RC1-Namecheap.zip
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-rc1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar rama de previsualización (nunca main)
+        uses: actions/checkout@v4
+        with:
+          ref: preview/skytools-global-es-en-rc1
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Validar ZIP aprobado y archivos ES/EN
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP="SKYTOOLS-GLOBAL-MAIN-ES-EN-RC1-Namecheap.zip"
+          test -f "$ZIP"
+          echo "fff754d9359d26540d265c908001a77c5d65a5fdb29038cf27db0ec3ca12cf6c  $ZIP" | sha256sum -c -
+          unzip -tq "$ZIP"
+          if unzip -Z -1 "$ZIP" | grep -Eq '(^/|(^|/)\.\.(/|$))'; then
+            echo "ERROR: ZIP contiene una ruta insegura"
+            exit 1
+          fi
+          mkdir -p /tmp/skytools-global-es-en-rc1
+          unzip -q "$ZIP" -d /tmp/skytools-global-es-en-rc1
+          BASE=/tmp/skytools-global-es-en-rc1
+          for file in index.html en/index.html assets/css/styles.css assets/js/main.js assets/js/lead-config.js assets/img/og-skytools-main-en.png sitemap.xml; do
+            test -f "$BASE/$file"
+          done
+          echo "058f5a5d9acc2ad11226c45812688fe723255ee665879c77b72968227d389711  $BASE/index.html" | sha256sum -c -
+          echo "8da26889150ea1d8b63c8ff56b89795ec759e5edc07199e600783d6cf81e0797  $BASE/en/index.html" | sha256sum -c -
+          echo "10dd9a924d24457f023a0e1823fe1579cdbf7683fdd0e2e2db6ef7fde89df7a9  $BASE/assets/css/styles.css" | sha256sum -c -
+          echo "dbf657f43ef050144b26a5a7cf416fe6785f68f7a71083b0666b8ac3653e7a25  $BASE/assets/js/main.js" | sha256sum -c -
+          echo "b2b37e1b2f8bdb6cc74bbf346b02f19e5bb374b1a84a131dcff569d97cce22f4  $BASE/assets/img/og-skytools-main-en.png" | sha256sum -c -
+          echo "c148f0aac3a4141cdca1e9da30403db83a1daf7350de7f43c6b84e97be9f188b  $BASE/assets/js/lead-config.js" | sha256sum -c -
+          echo "895e06a21ff167a422af826fe5a7dd663e063438990e0255288f202e5555eb2a  $BASE/sitemap.xml" | sha256sum -c -
+
+      - name: Importar únicamente a rama preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=/tmp/skytools-global-es-en-rc1
+          rm -rf assets en
+          cp -a "$BASE/assets" ./assets
+          cp -a "$BASE/en" ./en
+          for file in index.html README.md README-SKYTOOLS-GLOBAL.md SKYTOOLS-GLOBAL-REVISION.md FASE02-REVISION.md robots.txt sitemap.xml site.webmanifest favicon.ico favicon.png favicon-16x16.png favicon-32x32.png favicon-64x64.png apple-touch-icon.png android-chrome-192x192.png android-chrome-512x512.png; do
+            if test -f "$BASE/$file"; then
+              cp -a "$BASE/$file" "./$file"
+            fi
+          done
+          git add -A -- assets en
+          for file in index.html README.md README-SKYTOOLS-GLOBAL.md SKYTOOLS-GLOBAL-REVISION.md FASE02-REVISION.md robots.txt sitemap.xml site.webmanifest favicon.ico favicon.png favicon-16x16.png favicon-32x32.png favicon-64x64.png apple-touch-icon.png android-chrome-192x192.png android-chrome-512x512.png; do
+            if test -f "$BASE/$file"; then
+              git add -- "$file"
+            fi
+          done
+          git diff --cached --check
+
+      - name: Commit de revisión (sin desplegar)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then
+            echo "La rama ya contiene los archivos RC1."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build: importar RC1 ES EN completo desde ZIP aprobado"
+          git push origin HEAD:preview/skytools-global-es-en-rc1
